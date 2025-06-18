@@ -15,6 +15,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
+const PORT = process.env.PORT || 7000;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
 // MongoDB Connection with options
 const mongooseOptions = {
   useNewUrlParser: true,
@@ -66,12 +71,13 @@ app.get('/', (req, res) => {
 });
 
 // Error handling middleware
+
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
-    message: `Something went wrong!, ${req.credentials}`,
-    error: err.message 
-    // error: process.env.NODE_ENV === 'development' ? err.message : 'Internal server error'
+    message: 'Something went wrong!',
+    error: process.env.NODE_ENV === 'development' ? err.message : 'Internal server error'
   });
 });
 
