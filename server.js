@@ -14,13 +14,14 @@ const app = express();
 // Middleware
 const corsOptions = {
   origin: ['https://saranyapsankar.github.io'],
-  methods: ['GET', 'POST', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true 
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.options('*', cors(corsOptions));
 
 const PORT = process.env.PORT || 7000;
 app.listen(PORT, () => {
@@ -75,7 +76,10 @@ app.get('/', (req, res) => {
 });
 
 // Error handling middleware
-
+app.use((req, res, next) => {
+  console.log('Incoming request:', req.method, req.path);
+  next();
+});
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
