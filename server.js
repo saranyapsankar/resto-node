@@ -30,7 +30,7 @@ const mongooseOptions = {
 };
 
 if (!MONGODB_URI) {
-  console.error('MONGODB_URI is not defined in environment variables');
+  console.error('MONGODB_URI is not defined in environment variables', MONGODB_URI, process.env);
   process.exit(1);
 }
 
