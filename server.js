@@ -4,6 +4,9 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
 
+// MongoDB URI - Use environment variable from Vercel
+const MONGODB_URI = process.env.MONGODB_URI;
+
 dotenv.config();
 
 const app = express();
@@ -32,9 +35,6 @@ const mongooseOptions = {
   ssl: true,
   retryWrites: true
 };
-
-// MongoDB URI - Use environment variable from Vercel
-const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
   console.error('MONGODB_URI is not defined in environment variables');

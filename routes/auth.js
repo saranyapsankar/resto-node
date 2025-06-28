@@ -7,7 +7,7 @@ const User = require('../models/User');
 router.post('/register', async (req, res) => {
   try {
     const { name, email, password } = req.body;
-
+    console.log('register request received:', { name, email, password }, process.env.JWT_SECRET);
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -46,7 +46,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-
+    console.log('Login request received:', { email, password }, process.env.JWT_SECRET);
     // Find user
     const user = await User.findOne({ email });
     if (!user) {
