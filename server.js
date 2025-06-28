@@ -1,13 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
 
 // MongoDB URI - Use environment variable from Vercel
 const MONGODB_URI = process.env.MONGODB_URI;
-
-dotenv.config();
 
 const app = express();
 
@@ -22,11 +19,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.options('*', cors(corsOptions));
-
-const PORT = process.env.PORT || 7000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
 
 // MongoDB Connection with options
 const mongooseOptions = {
