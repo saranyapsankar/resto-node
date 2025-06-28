@@ -10,7 +10,7 @@ const app = express();
 
 // Middleware
 const corsOptions = {
-  origin: ['https://saranyapsankar.github.io'],
+  origin: ['https://saranyapsankar.github.io', 'http://localhost:1234'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true 
